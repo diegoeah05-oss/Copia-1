@@ -3,7 +3,7 @@ import java.awt.Color;
 
 public class HiloRebotador extends Thread {
     private VentanaMatrizHilos ventana;
-    private volatile boolean pausado = false;
+    private volatile boolean pausado= false;
     private volatile boolean corriendo = true;
     private int velocidad = 300;
 }
@@ -14,11 +14,11 @@ public HiloRebotador(VentanaMatrizHilos ventana) {
 public synchronized void pausarHilo() {
     pausado = true;
 }
-public synchronized void reanudarHilo() {
+public void reanudarHilo() {
     pausado = false;
     notifyAll();
 }
-public synchronized void terminarHilo() {
+public void terminarHilo() {
     corriendo=false;
     reanudarHilo();
 }
@@ -29,7 +29,6 @@ private synchronized void verificarPausa() {
             wait();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            break;
         }
     }
 }
