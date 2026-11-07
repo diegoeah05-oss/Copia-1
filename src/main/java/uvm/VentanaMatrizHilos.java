@@ -301,25 +301,15 @@ public class VentanaMatrizHilos extends JFrame {
     // Métodos privados para manejo de eventos (Rebotador)
     // -----------------------------------------------------------------
     private void iniciarRebotador() {
-        if (hreb == null || !hreb.isAlive()){
-            hreb = new HiloRebotador(this);
-            hreb.start();
-            btPausaR.setText("Pausa");
-        }
+        System.out.println("Evento: Iniciar Rebotador");
     }
 
     private void pausarRebotador() {
-        if (hreb != null && hreb.isAlive()){
-            hreb.pausarHilo();
-            btPausar.setText("Continuar");
-        }
+        System.out.println("Evento: Pausar Rebotador");
     }
 
     private void terminarRebotador() {
-        if (hreb != null) {
-            hreb.terminarHilo();
-            btPausaR.setText("Pausa");
-        }
+        System.out.println("Evento: Terminar Rebotador");
     }
 
     // -----------------------------------------------------------------
@@ -357,19 +347,4 @@ public class VentanaMatrizHilos extends JFrame {
         return matriz;
     }
 
-}
-
-public int getFilas(){
-    return matriz.lenght;
-}
-
-public int getColumnas(){
-    return matriz[0].lenght;
-}
-
-public void actualizarCelda(int fila, int columna, String texto, Color color){
-    javax.swing.SwingUtilities.invokeLater(()->{
-        matriz[fila][columna].setText(texto);
-        matriz[fila][columna].setForeground(color);
-    });
 }
