@@ -348,3 +348,19 @@ public class VentanaMatrizHilos extends JFrame {
     }
 
 }
+
+public int getFilas(){
+    return matriz.lenght;
+}
+
+public int getColumnas(){
+    return matriz[0].lenght;
+}
+
+public void actualizarCelda(int fila, int columna, String texto, Color color){
+    javax.swing.SwingUtilities.invokeLater(()->{
+        matriz[fila][columna].setText(texto);
+        matriz[fila][columna].setForeground(color);
+    });
+}
+
