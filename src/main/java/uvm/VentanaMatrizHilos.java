@@ -301,15 +301,25 @@ public class VentanaMatrizHilos extends JFrame {
     // Métodos privados para manejo de eventos (Rebotador)
     // -----------------------------------------------------------------
     private void iniciarRebotador() {
-        System.out.println("Evento: Iniciar Rebotador");
+        if (hreb == null || !hreb.isAlive()){
+            hreb = new HiloRebotador(this);
+            hreb.start();
+            btPausaR.setText("Pausa");
+        }
     }
 
     private void pausarRebotador() {
-        System.out.println("Evento: Pausar Rebotador");
+        if (hreb != null && hreb.isAlive()){
+            hreb.pausarHilo();
+            btPausar.setText("Continuar");
+        }
     }
 
     private void terminarRebotador() {
-        System.out.println("Evento: Terminar Rebotador");
+        if (hreb != null) {
+            hreb.terminarHilo();
+            btPausaR.setText("Pausa");
+        }
     }
 
     // -----------------------------------------------------------------
