@@ -6,7 +6,6 @@ public class HiloRebotador extends Thread {
     private volatile boolean pausado= false;
     private volatile boolean corriendo = true;
     private int velocidad = 300;
-}
 
 public HiloRebotador(VentanaMatrizHilos ventana) {
     this.ventana = ventana;
@@ -50,7 +49,7 @@ private synchronized void verificarPausa() {
         if(!corriendo)break;
 
         int sigX = x + dirX;
-        int sigY = y + dirY
+        int sigY = y + dirY;
 
         if (sigX < 0 || sigX >= filas) {
             dirX *= -1;
@@ -70,6 +69,7 @@ private synchronized void verificarPausa() {
     try {
         Thread.sleep(velocidad);
     } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
         break;
     }
    }
